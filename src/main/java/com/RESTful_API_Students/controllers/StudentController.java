@@ -34,10 +34,11 @@ public class StudentController {
         return null;
     }
 
-//    @PostMapping
-//    public Student createStudent() {
-//
-//    }
+    @PostMapping
+    public Student createStudent(@RequestBody Student student) {
+        students.add(student);
+        return student;
+    }
 
 
 }
