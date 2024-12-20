@@ -40,5 +40,51 @@ public class StudentController {
         return student;
     }
 
+    @PutMapping
+    public Student updateStudent(@RequestBody Student student){
+        for (Student st: students){
+            if (st.getID()==student.getID()){
+               st.setName(student.getName());
+               st.setEmail(student.getEmail());
+               st.setAge(student.getAge());
+               st.setCourse(student.getCourse());
+               return st;
+            }
+        }
+        return null;
+    }
+
+    @PatchMapping
+    public Student partialUpdateStudent(@RequestBody Student student){
+        for (Student st: students){
+            if (st.getID()==student.getID()){
+                if (student.getName()!=null){
+                st.setName(student.getName());
+                }
+                if (student.getAge()!=0){
+                st.setAge(student.getAge());
+                }
+                if (student.getEmail()!=null){
+                st.setEmail(student.getEmail());
+                }
+                if (student.getCourse()!=null){
+                st.setCourse(student.getCourse());
+                }
+                return st;
+            }
+        }
+        return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public Student deleteStudent(@PathVariable int id){
+        for (Student st: students){
+            if (id==st.getID()){
+               students.remove(st);
+               return st;
+            }
+        }
+        return null;
+    }
 
 }
